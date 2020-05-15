@@ -2,6 +2,7 @@
   "name": "stocks",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://fhohlberg.github.io/T03-IIC3103",
   "dependencies": {
     "bulma-pageloader": "^2.1.0",
     "chart.js": "^2.7.3",
