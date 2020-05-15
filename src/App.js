@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import AllStocksList from "./components/AllStocksList.jsx";
 import Dashboard from './components/Dashboard.jsx'
 import UnsafeScriptsWarning from "./components/UnsafeScriptsWarning";
 
@@ -38,17 +39,20 @@ class App extends Component {
     if (this.state.hasError) {
       return <UnsafeScriptsWarning />;
     }
-    if(!this.state.isToggleOn){
-      return (
+    if (!this.state.isToggleOn) {
+      return(
         <div className='container' style={{ textAlign: "center" }}>
-        <br></br>
-          <button onClick={this.handleClick}>
-            {this.state.isToggleOn ? 'CONECTAR SOCKET' : 'DESCONECTAR SOCKET'}
-          </button>
+          <br></br>
+          <div className='column'>
+            <button onClick={this.handleClick}>
+              {this.state.isToggleOn ? 'CONECTAR SOCKET' : 'DESCONECTAR SOCKET'}
+            </button>
+          </div>
           <Dashboard hideSpinner={this.hideSpinner} showSpinner={this.state.showSpinner} />
         </div>
-    );
-    }else{
+      );
+    }
+    else{
       return (
           <div className='container' style={{ textAlign: "center" }}>
             <br></br>
@@ -59,8 +63,9 @@ class App extends Component {
                 </button>
               <br></br>
             </div>
-        </div>);
-      }
+        </div>
+      );
+    }
   }
 }
 

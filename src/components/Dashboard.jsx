@@ -1,6 +1,7 @@
 import React from 'react'
 import * as bulma from "reactbulma";
 import StocksList from "./StocksList.jsx";
+import AllStocksList from "./AllStocksList.jsx";
 import ExchangeList from "./ExchangeList.jsx";
 import StocksGraph from "./StocksGraph.jsx";
 import StocksLoaderStatus from "./StocksLoaderStatus.jsx";
@@ -18,8 +19,10 @@ class Dashboard extends React.Component {
       exchanges: {},
       market_trend: undefined, // 'up' or 'down'
       connectionError: false,
-      isToggleOn: true};
-
+      isToggleOn: true,
+      isToggleStocks: true
+    };
+    this.handleClick2 = this.handleClick2.bind(this);
   }
 
   componentDidMount(){
@@ -163,7 +166,7 @@ class Dashboard extends React.Component {
     let new_stocks = this.state.all_stocks
     result.map((stock) =>
     {
-      new_stocks[stock.ticker] = {company_name: stock.company_name, quote_base: stock.quote_base}
+      new_stocks[stock.ticker] = {company_name: stock.company_name, quote_base: stock.quote_base, country: stock.country}
     });
     this.setState({all_stocks: new_stocks})
   }
@@ -184,33 +187,64 @@ class Dashboard extends React.Component {
     return Object.keys(this.state.stocks).length > 0;
   }
 
+  handleClick2() {
+  this.setState(state => ({
+    isToggleStocks: !state.isToggleStocks
+    }));
+  }
+
   render() {
-    return (
-      <div className='container'>
-      <br></br>
-        <div className='rows'>
-            <ExchangeList
-              exchanges={this.state.exchanges}
-            />
-            <br></br>
-            <StocksList
-              stocks={this.state.stocks}
-              toggleStockSelection={this.toggleStockSelection}
-              resetData={this.resetData}
-              market_trend={this.state.market_trend}
-              areStocksLoaded={this.areStocksLoaded}
-            />
-            <br></br>
-            <StocksGraph stocks={this.state.stocks} />
-          </div>
-          <div className={ this.props.showSpinner ? 'modal is-active' : 'modal' }>
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <StocksLoaderStatus connectionError={this.state.connectionError} />
+    if (!this.state.isToggleStocks) {
+      return(
+        <div className='container' style={{ textAlign: "center" }}>
+          <h5> El socket sigue conectado... </h5>
+          <br></br>
+          <AllStocksList
+            hideSpinner={this.hideSpinner}
+            showSpinner={this.state.showSpinner}
+            all_stocks={this.state.all_stocks}
+           />
+           <br></br>
+           <button className= "btn-theme02" onClick={this.handleClick2}>
+             {this.state.isToggleStocks ? 'INFORMACIÓN STOCKS' : 'VOLVER'}
+           </button>
+        </div>
+      );
+    }
+    else{
+      return (
+        <div className='container' style={{ textAlign: "center" }}>
+          <div className='container'>
+          <br></br>
+            <div className='rows'>
+                <ExchangeList
+                  exchanges={this.state.exchanges}
+                />
+                <br></br>
+                <button className= "btn-theme02" onClick={this.handleClick2}>
+                  {this.state.isToggleStocks ? 'INFORMACIÓN STOCKS' : 'VOLVER'}
+                </button>
+                <br></br>
+                <br></br>
+                <StocksList
+                  stocks={this.state.stocks}
+                  toggleStockSelection={this.toggleStockSelection}
+                  market_trend={this.state.market_trend}
+                  areStocksLoaded={this.areStocksLoaded}
+                />
+                <br></br>
+                <StocksGraph stocks={this.state.stocks} />
+              </div>
+              <div className={ this.props.showSpinner ? 'modal is-active' : 'modal' }>
+                <div className="modal-background"></div>
+                <div className="modal-content">
+                  <StocksLoaderStatus connectionError={this.state.connectionError} />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-    );
+      );
+    }
   }
 }
 

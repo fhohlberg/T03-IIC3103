@@ -28,7 +28,7 @@ const ExchangeList = (props) => {
               <th>Volumen Venta</th>
               <th>Volumen Total</th>
               <th>Cantidad Acciones</th>
-              <th>Participación mercado</th>
+              <th>% Participación mercado</th>
             </tr>
           </thead>
           <tbody>

@@ -1,14 +1,3 @@
-button {
-  background-color: grey;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
 body {
     color: #797979;
 	  background: #eaeaea;
@@ -20,11 +9,18 @@ body {
 
 .container{
   width: 100%;
-  height: 1600px;
+  height: 1700px;
 }
 
 button {
   background-color: #ed5565;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 button:hover,
@@ -37,9 +33,10 @@ open dropdown-toggle button {
   border-color: #48bcb4;
 }
 
+
 .btn-theme02 {
   color: #fff;
-  background-color: #ac92ec;
+  background-color: #4ECDC4;
   border-color: #967adc;
 }
 .btn-theme02:hover,
@@ -48,39 +45,10 @@ open dropdown-toggle button {
 .btn-theme02.active,
 .open .dropdown-toggle.btn-theme02 {
   color: #fff;
-  background-color: #967adc;
+  background-color: #4ECDC4;
   border-color: #967adc;
 }
 
-.btn-theme03 {
-  color: #fff;
-  background-color: #48cfad;
-  border-color: #37bc9b;
-}
-.btn-theme03:hover,
-.btn-theme03:focus,
-.btn-theme03:active,
-.btn-theme03.active,
-.open .dropdown-toggle.btn-theme03 {
-  color: #fff;
-  background-color: #37bc9b;
-  border-color: #37bc9b;
-}
-
-.btn-theme04 {
-  color: #fff;
-  background-color: #ed5565;
-  border-color: #da4453;
-}
-.btn-theme04:hover,
-.btn-theme04:focus,
-.btn-theme04:active,
-.btn-theme04.active,
-.open .dropdown-toggle.btn-theme04 {
-  color: #fff;
-  background-color: #da4453;
-  border-color: #da4453;
-}
 
 .btn-clear-g {
 	color: #48bcb4;
